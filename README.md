@@ -36,10 +36,10 @@ Java 8+
 * 服务器录像体验  
 1. 会场同步已经调试成功  
 2. 下载[录制程序](http://downloads.rongcloud.cn/Recorder.tar.gz)  
-  Recorder    录像主程序
-  lib         依赖库
-3  将依赖库lib的路径添加到 /etc/ld.so.conf.d/  
-4  将Recorder放到jar包的同级目录  
+  Recorder    录像主程序  
+  lib         依赖库  
+3. 将依赖库lib的路径添加到 /etc/ld.so.conf.d/  
+4. 将Recorder放到jar包的同级目录  
 5. 配置ServiceSettings.properties  
   #录像文件保存目录  
   recordSaveDir=  
