@@ -3,7 +3,7 @@ demo-rtc-record-server
 
 ## 项目描述  
 * 该demo集成的功能包括会场同步和服务器录像，使用前请在开发者后台开通会场同步和服务器录像能力  
-1. 会场同步。demo通过接口注册会场同步后,融云将会以http请求的方式将会场状态同步给demo  
+1. 会场同步。demo通过接口注册会场同步后，融云将会以http请求的方式将会场状态同步给demo  
 2. 服务器录像。demo调用录像程序连接流媒体服务器进行录像  
 
 
@@ -27,7 +27,7 @@ Java 8+
   appKey=  
   #替换为自己的secret  
   secret=  
-  #接收会场同步消息的地址， http://外网访问地址:端口/recv  
+  #接收会场同步消息的地址，格式为 http://外网访问地址:端口/recv  
   recvAddr=  
 5. 启动demo  
   nohup java -jar demo-rtc-record-server-*.jar &  
