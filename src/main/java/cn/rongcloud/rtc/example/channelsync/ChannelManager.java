@@ -112,14 +112,15 @@ public class ChannelManager {
 	}
 
 	public void startChannelSync() {
-		// doRegist every five minutes
+		// 会场同步订阅状态的有效期为5分钟
+		// 为了防止过期，每两分钟订阅一次
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				while (true) {
 					try {
-						doRegist();
-						Thread.sleep(1000 * 60 * 2);
+						doSubscribe();
+						Thread.sleep(Config.REGIST_INTERVAL);
 					} catch (Exception e) {
 						logger.error("do regist error", e);
 					}
@@ -128,9 +129,9 @@ public class ChannelManager {
 		}).start();
 	}
 
-	private boolean doRegist() throws Exception {
+	private boolean doSubscribe() throws Exception {
 
-		HttpPost request = registRequest();
+		HttpPost request = subscribeRequest();
 
 		try (CloseableHttpResponse response = httpclient.execute(request)) {
 
@@ -142,18 +143,16 @@ public class ChannelManager {
 			}
 
 			ResponseEntity result = getResult(response);
-			if (result.getCode() == 200) {
+			if (result.getCode() == ResponseEntity.CODE_OK) {
 				return true;
-			} else if (result.getCode() == 400) {
+			} else {
 				logger.error(" do regist fail , {}", result.getMsg());
 				return false;
 			}
-			
-			return false;
 		}
 	}
 
-	private static HttpPost registRequest() {
+	private static HttpPost subscribeRequest() {
 		String gatewayAddr = Config.instance().getGatewayAddr();
 		String registAddr = gatewayAddr + (gatewayAddr.endsWith("/") ? "channel/subscribe" : "/channel/subscribe");
 		String recvAddr = Config.instance().getRecvAddr();

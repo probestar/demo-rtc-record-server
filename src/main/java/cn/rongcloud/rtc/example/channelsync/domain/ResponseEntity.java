@@ -9,6 +9,8 @@ public class ResponseEntity {
 
 	private static final Gson gson = new Gson();
 
+	public static final int CODE_OK = 200;
+	
 	private int code;
 	private String msg;
 	private Object data;

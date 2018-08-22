@@ -9,6 +9,8 @@ public class Config {
 	
 	private static Config instance;
 	
+	public static final int REGIST_INTERVAL = 1000 * 60 * 2;
+	
 	private String ip = "0.0.0.0";
 	private int port = 8800;
 
